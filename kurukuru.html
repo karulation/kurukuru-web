@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kuru Kuru</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->
+    <link rel="stylesheet" href="kururin.css"> <!-- Include CSS stylesheet -->
+</head>
+<body>
+    <div class="containerKuru">
+        <img id="gif" src="./image/kurukuru-kururing.gif" alt="Animated GIF">
+    </div>
+    <button id="activateButton">Kuru Kuru ~~</button>
+</body>
+
+<script>
+        $(document).ready(function() {
+            var interval;
+            var container = $('.containerKuru'); // Get the container element using its class name
+            var gif = $('#gif'); // Get the GIF element using its ID
+            var isAnimationActive = false;
+
+            function animateGif() {
+                gif.css('display', 'block'); // Show the GIF
+                gif.css('left', container.width() + 'px'); // Position the GIF at the right edge of the container
+                gif.animate({
+                    left: '-' + gif.width() + 'px' // Animate the GIF to move from right to left
+                }, 3000, 'linear', function() {
+                    gif.css('display', 'none'); // Hide the GIF after animation completes
+                    gif.css('left', container.width() + 'px'); // Reset the GIF position to the right edge of the container
+                    isAnimationActive = false; // Reset animation flag
+                });
+            }
+
+            $('#activateButton').on('click', function() { // When the button is clicked
+                if (!isAnimationActive) { // Check if animation is not already active
+                    isAnimationActive = true; // Set animation flag to active
+                    animateGif(); // Start animating the GIF
+                }
+            });
+        });
+    </script>
+</html>
